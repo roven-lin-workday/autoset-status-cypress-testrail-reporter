@@ -72,7 +72,7 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
                     return {
                         case_id: caseId,
                         status_id: testrail_interface_1.Status.Skipped,
-                        comment: "Test title: ".concat(test.title, "\nSuite title: ").concat(test.parent.title),
+                        comment: "".concat(test.fullTitle),
                     };
                 });
                 (_a = _this.results).push.apply(_a, results);

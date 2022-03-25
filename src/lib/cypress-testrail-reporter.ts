@@ -59,7 +59,7 @@ export class CypressTestRailReporter extends reporters.Spec {
           return {
             case_id: caseId,
             status_id: Status.Skipped,
-            comment: `Test title: ${test.title}\nSuite title: ${test.parent.title}`,
+            comment: `${test.fullTitle}`,
           };
         });
         this.results.push(...results);
