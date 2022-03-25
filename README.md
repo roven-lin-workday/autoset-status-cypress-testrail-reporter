@@ -6,11 +6,13 @@
 
 Publishes [Cypress](https://www.cypress.io/) runs on TestRail.
 
-Cloned from the original package [cypress-testrail-reporter](https://github.com/Vivify-Ideas/cypress-testrail-reporter) by [Milutin Savovic](https://github.com/mickosav)
+This is a fork of the [autoset-status-cypress-testrail-reporter](https://github.com/dkuznetsov21/autoset-status-cypress-testrail-reporter), which was cloned from the original package [cypress-testrail-reporter](https://github.com/Vivify-Ideas/cypress-testrail-reporter) by [Milutin Savovic](https://github.com/mickosav)
 
 The original package by Milutin is awesome!
 
 Allows you to set statuses for test cases in a specific TestRun.
+
+This fork adds supports for a custom TestRail run status called `Skipped` when the Cypress test is skipped
 
 ## Install
 
@@ -72,7 +74,7 @@ You can read the whole TestRail documentation [here](http://docs.gurock.com/).
 
 ## Author
 
-Author: Dmytro Kuznetsov - [github](https://github.com/dkuznetsov21)
+Author: Roven Lin - [GitHub Enterprise](https://ghe.megaleo.com/pex/autoset-status-cypress-testrail-reporter)
 
 ## License
 
@@ -80,5 +82,6 @@ This project is licensed under the [MIT license](/LICENSE.md).
 
 ## Acknowledgments
 
+* [Dmytro Kuznetsov](https://github.com/dkuznetsov21), author of the [autoset-status-cypress-testrail-reporter](https://github.com/dkuznetsov21/autoset-status-cypress-testrail-reporter) repository that was forked.
 * [Milutin Savovic](https://github.com/mickosav), author of the [cypress-testrail-reporter](https://github.com/Vivify-Ideas/cypress-testrail-reporter) repository that was cloned.
 * [Pierre Awaragi](https://github.com/awaragi), owner of the [mocha-testrail-reporter](https://github.com/awaragi/mocha-testrail-reporter) repository that was forked.

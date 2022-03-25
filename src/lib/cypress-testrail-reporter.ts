@@ -52,6 +52,20 @@ export class CypressTestRailReporter extends reporters.Spec {
       }
     });
 
+    runner.on("pending", test => {
+      const caseIds = titleToCaseIds(test.title);
+      if (caseIds.length > 0) {
+        const results = caseIds.map((caseId) => {
+          return {
+            case_id: caseId,
+            status_id: Status.Skipped,
+            comment: `Test title: ${test.title}\nSuite title: ${test.parent.title}`,
+          };
+        });
+        this.results.push(...results);
+      }
+    });
+
     runner.on('end', () => {
       // publish test cases results & close the run
       this.testRail.publishResults(this.results)

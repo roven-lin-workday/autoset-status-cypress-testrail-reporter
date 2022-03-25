@@ -7,6 +7,8 @@ var __extends = (this && this.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -35,14 +37,14 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
         _this.validate(reporterOptions, 'runId');
         runner.on('pass', function (test) {
             var _a;
-            var caseIds = shared_1.titleToCaseIds(test.title);
+            var caseIds = (0, shared_1.titleToCaseIds)(test.title);
             if (caseIds.length > 0) {
                 var results = caseIds.map(function (caseId) {
                     return {
                         case_id: caseId,
                         status_id: testrail_interface_1.Status.Passed,
-                        comment: "Execution time: " + test.duration + "ms",
-                        elapsed: test.duration / 1000 + "s"
+                        comment: "Execution time: ".concat(test.duration, "ms"),
+                        elapsed: "".concat(test.duration / 1000, "s")
                     };
                 });
                 (_a = _this.results).push.apply(_a, results);
@@ -50,13 +52,27 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
         });
         runner.on('fail', function (test) {
             var _a;
-            var caseIds = shared_1.titleToCaseIds(test.title);
+            var caseIds = (0, shared_1.titleToCaseIds)(test.title);
             if (caseIds.length > 0) {
                 var results = caseIds.map(function (caseId) {
                     return {
                         case_id: caseId,
                         status_id: testrail_interface_1.Status.Failed,
-                        comment: "" + test.err.message,
+                        comment: "".concat(test.err.message),
+                    };
+                });
+                (_a = _this.results).push.apply(_a, results);
+            }
+        });
+        runner.on("pending", function (test) {
+            var _a;
+            var caseIds = (0, shared_1.titleToCaseIds)(test.title);
+            if (caseIds.length > 0) {
+                var results = caseIds.map(function (caseId) {
+                    return {
+                        case_id: caseId,
+                        status_id: testrail_interface_1.Status.Skipped,
+                        comment: "Test title: ".concat(test.title, "\nSuite title: ").concat(test.parent.title),
                     };
                 });
                 (_a = _this.results).push.apply(_a, results);
@@ -73,7 +89,7 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
             throw new Error('Missing reporterOptions in cypress.json');
         }
         if (options[name] == null) {
-            throw new Error("Missing " + name + " value. Please update reporterOptions in cypress.json");
+            throw new Error("Missing ".concat(name, " value. Please update reporterOptions in cypress.json"));
         }
     };
     return CypressTestRailReporter;

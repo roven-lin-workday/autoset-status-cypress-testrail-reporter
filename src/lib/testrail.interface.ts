@@ -16,6 +16,7 @@ export enum Status {
     Untested = 3,
     Retest = 4,
     Failed = 5,
+    Skipped = 6,
 }
 
 export interface TestRailResult {
